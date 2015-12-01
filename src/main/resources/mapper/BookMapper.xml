@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.elangzhi.base.dao.BookMapper" >
+  <resultMap id="BaseResultMap" type="com.elangzhi.base.model.Book" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="integral" property="integral" jdbcType="DECIMAL" />
+    <result column="file" property="file" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="down" property="down" jdbcType="INTEGER" />
+    <result column="show" property="show" jdbcType="INTEGER" />
+    <result column="file_size" property="fileSize" jdbcType="BIGINT" />
+    <result column="intro" property="intro" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="good" property="good" jdbcType="INTEGER" />
+    <result column="tongren" property="tongren" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, `name`, author, integral, `file`, `type`, down, `show`, file_size, intro, icon, 
+    good, tongren
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_book
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_book
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.elangzhi.base.model.Book" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_book (id, `name`, author, 
+      integral, `file`, `type`, 
+      down, `show`, file_size, 
+      intro, icon, good, 
+      tongren)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{integral,jdbcType=DECIMAL}, #{file,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{down,jdbcType=INTEGER}, #{show,jdbcType=INTEGER}, #{fileSize,jdbcType=BIGINT}, 
+      #{intro,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{good,jdbcType=INTEGER}, 
+      #{tongren,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.elangzhi.base.model.Book" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="name != null" >
+        `name`,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="file != null" >
+        `file`,
+      </if>
+      <if test="type != null" >
+        `type`,
+      </if>
+      <if test="down != null" >
+        down,
+      </if>
+      <if test="show != null" >
+        `show`,
+      </if>
+      <if test="fileSize != null" >
+        file_size,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="good != null" >
+        good,
+      </if>
+      <if test="tongren != null" >
+        tongren,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=BIGINT},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=DECIMAL},
+      </if>
+      <if test="file != null" >
+        #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="down != null" >
+        #{down,jdbcType=INTEGER},
+      </if>
+      <if test="show != null" >
+        #{show,jdbcType=INTEGER},
+      </if>
+      <if test="fileSize != null" >
+        #{fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="good != null" >
+        #{good,jdbcType=INTEGER},
+      </if>
+      <if test="tongren != null" >
+        #{tongren,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.elangzhi.base.model.Book" >
+    update t_book
+    <set >
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=DECIMAL},
+      </if>
+      <if test="file != null" >
+        `file` = #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="down != null" >
+        down = #{down,jdbcType=INTEGER},
+      </if>
+      <if test="show != null" >
+        `show` = #{show,jdbcType=INTEGER},
+      </if>
+      <if test="fileSize != null" >
+        file_size = #{fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="good != null" >
+        good = #{good,jdbcType=INTEGER},
+      </if>
+      <if test="tongren != null" >
+        tongren = #{tongren,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.elangzhi.base.model.Book" >
+    update t_book
+    set `name` = #{name,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=DECIMAL},
+      `file` = #{file,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      down = #{down,jdbcType=INTEGER},
+      `show` = #{show,jdbcType=INTEGER},
+      file_size = #{fileSize,jdbcType=BIGINT},
+      intro = #{intro,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      good = #{good,jdbcType=INTEGER},
+      tongren = #{tongren,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
