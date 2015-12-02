@@ -22,6 +22,7 @@ public class IndexController {
     public ModelAndView showCall(@PathVariable String name,HttpServletRequest request,ModelMap model){
         model.addAttribute("date", new Date());
         model.addAttribute("name", name);
+        model.addAttribute("adminJson", "json content");
         return new ModelAndView("index",model);
     }
 }
