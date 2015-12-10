@@ -34,6 +34,7 @@ public class AdminController {
         Admin admin = adminService.findById(id);
         model.addAttribute("admin", admin);
         model.addAttribute("adminJson", JSON.toJSONString(admin));
+        //onlygx
         model.addAttribute("date", new Date());
         return new ModelAndView("index",model);
     }
