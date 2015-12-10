@@ -21,7 +21,6 @@ public class IndexController {
         model.addAttribute("date", new Date());
         model.addAttribute("name", name);
         model.addAttribute("adminJson", "json content");
-
         return new ModelAndView("index",model);
     }
 }
